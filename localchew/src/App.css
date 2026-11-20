@@ -1,6 +1,0 @@
-@import "tailwindcss";
-.main-block {
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 200px 5fr;
-}
