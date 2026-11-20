@@ -1,50 +1,30 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import { NavList } from "./components/navlist";
+import { NavBlockListType } from "./interfaces/nav.type";
+
+const siteList: NavBlockListType = {
+  items: [
+    { icon: "", title: "Сегодня" },
+    { icon: "", title: "Мой холодильник" },
+    { icon: "", title: "Рецепты" },
+    { icon: "", title: "Список покупок" },
+  ],
+};
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
-
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
-
   return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
-
-      <div className="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="w-full main-block">
+      <div className="bg-green-900 p-4">
+        <div className="flex flex-row h-8">
+          <image className="size-8"></image>
+          <p className="capitalize text-white text-1xl">Локальный шеф</p>
+        </div>
+        <div>
+          <NavList items={siteList.items}></NavList>
+        </div>
       </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
+      <div className="p-16">Текст</div>
+    </div>
   );
 }
 
